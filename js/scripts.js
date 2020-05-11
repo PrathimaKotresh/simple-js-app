@@ -1,38 +1,40 @@
-var pokemonRepository = (function () {
+var pokemonRepository = (function() {
   var pokemonList = [{
       name: 'Pikachu',
       height: 0.4,
       types: ['electric'],
-      Weight: 6
+      weight: 6
     },
     {
       name: 'Bulbasaur',
       height: 0.7,
       types: ['grass', 'poison'],
-      Weight: 6.9
+      weight: 6.9
     },
     {
       name: 'Charizard',
       height: 1.7,
       types: ['fire', 'flying'],
-      Weight: 90.5
+      weight: 90.5
     },
     {
       name: 'Venusaur',
       height: 2,
       types: ['grass', 'poison'],
-      Weight: 100
+      weight: 100
     },
     {
       name: 'Dragonite',
       height: 2.2,
       types: ['dragon', 'flying'],
-      Weight: 210
+      weight: 210
     }
   ];
 
   function add(pokemon) {
-    pokemonList.push(pokemon);
+    if (typeof pokemon === Object && Object.keys(pokemon) === ['name', 'height', 'types', 'weight']) {
+      pokemonList.push(pokemon);
+    }
   }
 
   function getAll() {
@@ -45,10 +47,10 @@ var pokemonRepository = (function () {
   };
 })();
 
-pokemonRepository.getAll().forEach(function(pokemon){
+pokemonRepository.getAll().forEach(function(pokemon) {
   document.write(pokemon.name + ' (height: ' + pokemon.height + ')');
   if (pokemon.height > 2) {
-    document.write(' - Wow, that’s big!')
+    document.write(' - Wow, that’s big!');
   }
-  document.write('<br>')
+  document.write('<br>');
 })
