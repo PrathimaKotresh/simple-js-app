@@ -30,6 +30,19 @@ var pokemonRepository = (function () {
       Weight: 210
     }
   ];
+
+  function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll
+  };
 })();
 
 pokemonList.forEach(function(pokemon){
