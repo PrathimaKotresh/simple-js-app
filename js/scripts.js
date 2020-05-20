@@ -32,6 +32,19 @@ var pokemonRepository = (function() {
     });
   }
 
+ function showLoadingMessage(){
+   var loading = document.querySelector('.loading');
+   var para = document.createElement('p');
+   para.innerText = 'Loading Data...';
+   loading.appendChild(para);
+ }
+
+ function hideLoadingMessage(){
+   var loading = document.querySelector('.loading');
+   var para = document.querySelector('p');
+   loading.removeChild(para);
+ }
+
   // function to show all pokemon details in console
   function showDetails(item) {
     loadDetails(item).then(function() {
@@ -40,7 +53,9 @@ var pokemonRepository = (function() {
   }
 
   function loadList() {
+    showLoadingMessage();
     return fetch(apiUrl).then(function(response) {
+      hideLoadingMessage();
       return response.json();
     }).then(function(json) {
       json.results.forEach(function(item) {
@@ -51,13 +66,16 @@ var pokemonRepository = (function() {
         add(pokemon);
       });
     }).catch(function(e) {
+      hideLoadingMessage();
       console.error(e);
     })
   }
 
   function loadDetails(item) {
+    showLoadingMessage();
     var url = item.detailsUrl;
     return fetch(url).then(function(response) {
+      hideLoadingMessage();
       return response.json();
     }).then(function(details) {
       // Now we add the details to the item
@@ -65,6 +83,7 @@ var pokemonRepository = (function() {
       item.height = details.height;
       item.types = details.types;
     }).catch(function(e) {
+      hideLoadingMessage();
       console.error(e);
     });
   }
