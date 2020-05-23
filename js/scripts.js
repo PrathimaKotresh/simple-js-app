@@ -1,7 +1,7 @@
 // IIFE fuction for pokemon repository
 var pokemonRepository = (function() {
   var pokemonList = [];
-  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/';
+  var apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   var $modalContainer = document.querySelector('#modal-container');
 
   // function to add a pokemon object to pokemon list
